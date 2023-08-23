@@ -1,1 +1,1 @@
-web: unicorn app:app
+web: uvicorn app:app
