@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from starlette.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from solution import get_random_500
@@ -17,12 +17,8 @@ async def healthcheck():
     return {"message": "Everything OK!"}
 
 class SchRandomFloats(BaseModel):
-    inp_str: str = Field(examples="This is an example sentence")
+    inp_str: str = Field(examples=["This is an example sentence"])
 
-@app.post("/pt_random_floats/")
+@app.post("/random_floats/")
 async def random_floats(x: SchRandomFloats):
-    return {"output": get_random_500()}
-
-@app.get("/random_floats/{inp_str}")
-async def random_floats(inp_str):
     return {"output": get_random_500()}
